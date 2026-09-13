@@ -1,0 +1,94 @@
+name: Phase 1.2a map core qualification
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'phase1_ros2/**'
+      - '.github/workflows/phase12-map-core.yml'
+      - 'ci/validate_github_actions.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: usv-phase12-map-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  phase12-map-core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PHASE12_IMAGE: usv-guidance-phase12-map:gha
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Preflight
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p phase1_ros2/phase12_out
+          docker version | tee phase1_ros2/phase12_out/docker_version.log
+          docker info | tee phase1_ros2/phase12_out/docker_info.log
+          df -h | tee phase1_ros2/phase12_out/disk_before.log
+          free -h | tee phase1_ros2/phase12_out/memory.log
+      - name: Pull and identify ROS 2 base image
+        shell: bash
+        run: |
+          set -euxo pipefail
+          docker pull ros:jazzy-ros-base-noble | tee phase1_ros2/phase12_out/docker_pull.log
+          docker image inspect ros:jazzy-ros-base-noble > phase1_ros2/phase12_out/base_image_inspect.json
+          docker image inspect ros:jazzy-ros-base-noble --format '{{json .RepoDigests}}' > phase1_ros2/phase12_out/base_image_repo_digests.json
+      - name: Build qualification image
+        shell: bash
+        run: |
+          set -o pipefail
+          docker build --label org.opencontainers.image.source="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}" --label org.opencontainers.image.revision="${GITHUB_SHA}" -f phase1_ros2/Dockerfile.phase11 -t "${PHASE12_IMAGE}" phase1_ros2 2>&1 | tee phase1_ros2/phase12_out/docker_build.log
+      - name: Run map-core qualification
+        id: qualification
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          chmod -R a+rwX phase1_ros2
+          set +e
+          docker run --rm --user 0:0 --mount "type=bind,source=${GITHUB_WORKSPACE}/phase1_ros2,target=/work" "${PHASE12_IMAGE}" bash /work/scripts/run_phase12_map_core.sh 2>&1 | tee phase1_ros2/phase12_out/docker_run.log
+          rc=${PIPESTATUS[0]}
+          set -e
+          echo "qualification_rc=${rc}" >> "$GITHUB_OUTPUT"
+          exit "$rc"
+      - name: Package Phase 1.2a evidence
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          sudo chown -R "$(id -u):$(id -g)" phase1_ros2/phase12_out 2>/dev/null || true
+          cd phase1_ros2
+          python3 scripts/make_phase12_report.py phase12_out || true
+          rm -f PHASE12A_RETURN.zip PHASE12A_RETURN.zip.sha256
+          (cd phase12_out && zip -qr ../PHASE12A_RETURN.zip .)
+          sha256sum PHASE12A_RETURN.zip > PHASE12A_RETURN.zip.sha256
+          df -h > phase12_out/disk_after.log
+          exit 0
+      - name: Upload Phase 1.2a evidence
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: phase12-map-core-${{ github.run_id }}
+          path: |
+            phase1_ros2/PHASE12A_RETURN.zip
+            phase1_ros2/PHASE12A_RETURN.zip.sha256
+            phase1_ros2/phase12_out
+          if-no-files-found: error
+          retention-days: 30
+      - name: Enforce qualification result
+        if: always()
+        shell: bash
+        run: |
+          rc='${{ steps.qualification.outputs.qualification_rc }}'
+          if [[ -z "$rc" ]]; then exit 90; fi
+          exit "$rc"
