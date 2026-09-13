@@ -2,6 +2,7 @@
 
 #include "usv_map_core/geometry.hpp"
 
+#include <limits>
 #include <vector>
 
 namespace usv_map_core {
@@ -38,6 +39,7 @@ private:
   std::vector<Segment2dM> voronoi_segments_{};
 
   [[nodiscard]] const std::vector<AabbM> & boxes_for(LayerId layer) const;
+  static void validate_point(const Point2dM & point);
   static void validate_box(const AabbM & box);
   static void validate_segment(const Segment2dM & segment);
 };

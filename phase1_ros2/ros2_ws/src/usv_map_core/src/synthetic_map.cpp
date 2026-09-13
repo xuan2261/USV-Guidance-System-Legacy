@@ -18,6 +18,13 @@ SyntheticMap::SyntheticMap(SyntheticMapConfig config) : config_(config)
   }
 }
 
+void SyntheticMap::validate_point(const Point2dM & point)
+{
+  if (!std::isfinite(point.x_m) || !std::isfinite(point.y_m)) {
+    throw std::invalid_argument("SyntheticMap point coordinates must be finite metres");
+  }
+}
+
 void SyntheticMap::validate_box(const AabbM & box)
 {
   if (!box.valid()) {
@@ -83,6 +90,7 @@ const std::vector<AabbM> & SyntheticMap::boxes_for(LayerId layer) const
 
 bool SyntheticMap::intersects(const Point2dM & point, LayerId layer) const
 {
+  validate_point(point);
   const auto & boxes = boxes_for(layer);
   return std::any_of(boxes.begin(), boxes.end(), [&](const AabbM & box) {
     return contains_closed(box, point);
@@ -92,6 +100,7 @@ bool SyntheticMap::intersects(const Point2dM & point, LayerId layer) const
 double SyntheticMap::distance_m(
   const Point2dM & point, LayerId layer, double saturation_m) const
 {
+  validate_point(point);
   if (std::isnan(saturation_m) || saturation_m < 0.0) {
     throw std::invalid_argument("saturation_m must be non-negative or infinity");
   }
