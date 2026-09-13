@@ -65,6 +65,22 @@ jobs:
           rc=${PIPESTATUS[0]}
           set -e
           echo "docker_build_rc=${rc}" >> "$GITHUB_OUTPUT"
+          if [[ "$rc" == '0' ]]; then
+            image_id="$(docker image inspect "${LEGACY_IMAGE}" --format '{{.Id}}')"
+            python3 - "$image_id" "${LEGACY_IMAGE}" <<'PY'
+          import json, pathlib, sys
+          pathlib.Path('qualification_return/docker_build.json').write_text(json.dumps({
+              'status':'PASS', 'image':sys.argv[2], 'image_id':sys.argv[1]
+          }, indent=2)+'\n')
+          PY
+          else
+            python3 - "$rc" "${LEGACY_IMAGE}" <<'PY'
+          import json, pathlib, sys
+          pathlib.Path('qualification_return/docker_build.json').write_text(json.dumps({
+              'status':'FAIL', 'image':sys.argv[2], 'docker_build_rc':int(sys.argv[1])
+          }, indent=2)+'\n')
+          PY
+          fi
           exit "$rc"
 
       - name: Run legacy qualification
