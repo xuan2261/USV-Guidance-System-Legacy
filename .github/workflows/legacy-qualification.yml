@@ -49,13 +49,31 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
+          set +e
           docker build --pull=false --platform linux/amd64 \
             --label org.opencontainers.image.source="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}" \
             --label org.opencontainers.image.revision="${GITHUB_SHA}" \
             -t "${LEGACY_IMAGE}" -f Dockerfile.legacy . \
             2>&1 | tee qualification_return/docker-build.log
           rc=${PIPESTATUS[0]}
+          set -e
           echo "docker_build_rc=${rc}" >> "$GITHUB_OUTPUT"
+          if [[ "$rc" == '0' ]]; then
+            image_id="$(docker image inspect "${LEGACY_IMAGE}" --format '{{.Id}}')"
+            python3 - "$image_id" "${LEGACY_IMAGE}" <<'PY'
+          import json, pathlib, sys
+          pathlib.Path('qualification_return/docker_build.json').write_text(json.dumps({
+              'status':'PASS', 'image':sys.argv[2], 'image_id':sys.argv[1]
+          }, indent=2)+'\n')
+          PY
+          else
+            python3 - "$rc" "${LEGACY_IMAGE}" <<'PY'
+          import json, pathlib, sys
+          pathlib.Path('qualification_return/docker_build.json').write_text(json.dumps({
+              'status':'FAIL', 'image':sys.argv[2], 'docker_build_rc':int(sys.argv[1])
+          }, indent=2)+'\n')
+          PY
+          fi
           exit "$rc"
 
       - name: Run legacy qualification
@@ -66,6 +84,7 @@ jobs:
         run: |
           set -o pipefail
           chmod -R a+rwX qualification_return _qualification_work
+          set +e
           docker run --rm --platform linux/amd64 \
             --user 0:0 \
             --mount "type=bind,source=${GITHUB_WORKSPACE},target=/harness,readonly" \
@@ -76,6 +95,7 @@ jobs:
             bash /harness/scripts/run_qualification.sh /workspace /return \
             2>&1 | tee qualification_return/github_actions_container.log
           rc=${PIPESTATUS[0]}
+          set -e
           echo "qualification_rc=${rc}" >> "$GITHUB_OUTPUT"
           exit "$rc"
 
@@ -84,9 +104,10 @@ jobs:
         shell: bash
         run: |
           set +e
+          sudo chown -R "$(id -u):$(id -g)" qualification_return _qualification_work 2>/dev/null || true
           mkdir -p qualification_return
           python3 - <<'PY'
-          import json, os, pathlib
+          import json, pathlib
           out=pathlib.Path('qualification_return')
           db='${{ steps.docker_build.outputs.docker_build_rc }}'
           qr='${{ steps.qualification.outputs.qualification_rc }}'
