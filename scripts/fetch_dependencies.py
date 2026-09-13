@@ -15,7 +15,10 @@ def out(args):
     return subprocess.check_output(args, text=True).strip()
 
 def norm_url(url: str) -> str:
-    return url.rstrip('/').removesuffix('.git')
+    # ROS Noetic / Ubuntu 20.04 ships Python 3.8, so avoid str.removesuffix
+    # (introduced in Python 3.9).
+    normalized = url.rstrip('/')
+    return normalized[:-4] if normalized.endswith('.git') else normalized
 
 for name, spec in data.items():
     url, sha = spec['url'], spec['version']
@@ -31,9 +34,6 @@ for name, spec in data.items():
 
     submodules = spec.get('submodules') or {}
     if submodules:
-        # The pinned superproject commit is authoritative for which gitlink SHA
-        # must be checked out. Initialize recursively, then verify both the
-        # lockfile and superproject index agree with the checked-out revision.
         run(['git', '-C', str(path), 'submodule', 'sync', '--recursive'])
         run(['git', '-C', str(path), 'submodule', 'update', '--init', '--recursive', '--checkout'])
         for sm_path, sm_spec in submodules.items():
