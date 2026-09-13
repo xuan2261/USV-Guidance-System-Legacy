@@ -3,10 +3,24 @@ from pathlib import Path
 import json, subprocess, sys, tempfile, yaml, xml.etree.ElementTree as ET
 root=Path(sys.argv[1] if len(sys.argv)>1 else Path(__file__).resolve().parents[1]); checks=[]
 def add(n,ok,d=''): checks.append({'name':n,'status':'PASS' if ok else 'FAIL','detail':d})
-try:
- for p in root.rglob('*.json'): json.loads(p.read_text())
- add('json_parse',True)
-except Exception as e:add('json_parse',False,str(e))
+# Validate source/lock JSON only. Runtime evidence is generated during the same
+# workflow and may be temporarily empty or partially written while this process runs.
+generated_prefixes=(
+ 'artifacts/github-actions/',
+ 'qualification_return/',
+ 'phase1_ros2/qualification_return/',
+ 'phase1_ros2/regression/out/',
+ 'phase1_ros2/artifacts/',
+)
+json_errors=[]
+for p in root.rglob('*.json'):
+ try: rel=p.relative_to(root).as_posix()
+ except ValueError: rel=p.as_posix()
+ if rel.startswith('.git/') or any(rel.startswith(prefix) for prefix in generated_prefixes):
+  continue
+ try: json.loads(p.read_text())
+ except Exception as e: json_errors.append(f'{rel}: {e}')
+add('json_parse',not json_errors,'; '.join(json_errors[:10]))
 try:
  dep=yaml.safe_load((root/'locks/dependencies.repos').read_text())['repositories']; add('dependency_lock_shape',len(dep)==5 and all(len(v['version'])==40 and v['url'].startswith('https://') for v in dep.values()))
 except Exception as e:add('dependency_lock_shape',False,str(e))
@@ -66,4 +80,4 @@ add('github_actions_validation',r.returncode==0,(r.stdout+r.stderr)[-700:])
 with tempfile.TemporaryDirectory() as td:
  d=Path(td); (d/'preflight.json').write_text('{}'); (d/'environment.json').write_text('{}'); (d/'docker_build.json').write_text('{}'); (d/'harness_error.json').write_text(json.dumps({'status':'FAIL'}))
  r=subprocess.run([sys.executable,str(root/'scripts/validate_return.py'),str(d)],capture_output=True,text=True); j=json.loads((d/'RETURN_AUDIT.json').read_text()); add('return_triage_early_failure',r.returncode==0 and j['next_action']=='FIX_HOST_OR_WRAPPER',r.stdout[-300:])
-ok=all(x['status']=='PASS' for x in checks); print(json.dumps({'version':'0.6','status':'PASS' if ok else 'FAIL','checks':checks},indent=2)); sys.exit(0 if ok else 1)
+ok=all(x['status']=='PASS' for x in checks); print(json.dumps({'version':'0.6.1','status':'PASS' if ok else 'FAIL','checks':checks},indent=2)); sys.exit(0 if ok else 1)
