@@ -11,6 +11,10 @@ repositories:
     type: git
     url: https://github.com/sanderfu/rviz_polygon_filled.git
     version: d8d702e66e85aacd00bcf0c66bbca738a305731e
+    submodules:
+      rviz_polygon_filled/poly2tri:
+        url: https://github.com/zolnierczyk/poly2tri
+        version: e66d045060ffc8f3386cba564441c30de440d46c
   enc_extraction:
     type: git
     url: https://github.com/sanderfu/enc_extract_lib.git
