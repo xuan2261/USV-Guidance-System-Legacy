@@ -32,6 +32,9 @@ jobs:
       - name: Validate workflows
         run: python3 ci/validate_github_actions.py
 
+      - name: Validate runtime asset preflight
+        run: python3 ci/validate_runtime_preflight.py
+
       - name: Run artifact self-test
         shell: bash
         run: |
