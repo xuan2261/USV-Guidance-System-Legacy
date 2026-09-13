@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "source_commit": "c930b938302d8cfe8c378dfa69748a33d3d76459",
+  "scenarios": [
+    {
+      "id": "zero_equilibrium",
+      "pass": true,
+      "max_error": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      },
+      "max_raw_yaw_error": 0.0,
+      "expect": "equivalent"
+    },
+    {
+      "id": "surge_step",
+      "pass": true,
+      "max_error": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      },
+      "max_raw_yaw_error": 0.0,
+      "expect": "equivalent"
+    },
+    {
+      "id": "yaw_step",
+      "pass": true,
+      "max_error": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      },
+      "max_raw_yaw_error": 0.0,
+      "expect": "equivalent"
+    },
+    {
+      "id": "combined_state",
+      "pass": true,
+      "max_error": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      },
+      "max_raw_yaw_error": 0.0,
+      "expect": "equivalent"
+    },
+    {
+      "id": "wrap_179_to_minus179",
+      "pass": true,
+      "max_error": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      },
+      "max_raw_yaw_error": 0.0,
+      "expect": "equivalent"
+    },
+    {
+      "id": "exact_pi_boundary",
+      "pass": true,
+      "max_error": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      },
+      "max_raw_yaw_error": 0.0,
+      "expect": "legacy_policy_required"
+    }
+  ]
+}

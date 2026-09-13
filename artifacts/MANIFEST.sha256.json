@@ -1,0 +1,587 @@
+{
+  "schema": "usv-recovery-manifest/v1",
+  "version": "0.6",
+  "generated_at_utc": "2026-09-13T04:52:18.646410+00:00",
+  "files": [
+    {
+      "path": ".devcontainer/devcontainer.json",
+      "sha256": "ac80507b3b80b9e15ce2d6705157edb9b2f8882e45b51e2a4025033ffb6a5ffb",
+      "size": 524
+    },
+    {
+      "path": ".github/workflows/legacy-qualification.yml",
+      "sha256": "702638e7e2ae76c83c7adc46070a573b83178c78a0154dad470d1357aa08753c",
+      "size": 4727
+    },
+    {
+      "path": ".github/workflows/phase11-ros2.yml",
+      "sha256": "a2a4a9e29a4b4971590b969be3a9c18a49d9f5be45b980dad2526aeebd0d27d6",
+      "size": 3630
+    },
+    {
+      "path": ".github/workflows/static-audit.yml",
+      "sha256": "442243678007dbdfc1ddec0324224e08dee82198ea32f2f531ef66869f64c64e",
+      "size": 1858
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "d641a7603ee8b53b57db0be8ad0c7c52fdbba5723a8bd479e437363042fb6fde",
+      "size": 400
+    },
+    {
+      "path": "Dockerfile.legacy",
+      "sha256": "9061c1756e67c5e995798c24c3fba7495690b68d2703f1601f4531654124bbf2",
+      "size": 1243
+    },
+    {
+      "path": "PRECHECK.cmd",
+      "sha256": "4850a1755d771735229e5c65df9ba3c515e054646b7f1100e2bd4118c065eb5d",
+      "size": 261
+    },
+    {
+      "path": "PRECHECK.ps1",
+      "sha256": "3b87fa4ce84c43e2a6158461ab5a54aacf3fb69abd81d34ae1db80efc69dfd30",
+      "size": 395
+    },
+    {
+      "path": "README.md",
+      "sha256": "a8a45c71703492fca31b9984b4b34ddabb03b382268fcacc3d15d439c40262d6",
+      "size": 2040
+    },
+    {
+      "path": "RETURN_INSTRUCTIONS.md",
+      "sha256": "872bd21106c2ea3d8f4fe62c1e42e4a08b8ae72e74299c6ecb51eae6e152d169",
+      "size": 478
+    },
+    {
+      "path": "RUN_ALL.cmd",
+      "sha256": "d3a4ecb5c68efa89dfb243180aedb82ba3f5d13ae43256d568821b43d8253cec",
+      "size": 268
+    },
+    {
+      "path": "RUN_ALL.ps1",
+      "sha256": "088d76fc7ac55a2177ff72bba78aeb2eb35b0604eee1711c973ff6d7edb41a31",
+      "size": 5143
+    },
+    {
+      "path": "artifacts/QA_REPORT.json",
+      "sha256": "e0b77cb565eeb1ca0c8d6d50ff4ff1ae65fd105b9df2bf36e0993a0dd00fa457",
+      "size": 7607
+    },
+    {
+      "path": "ci/__pycache__/validate_github_actions.cpython-313.pyc",
+      "sha256": "c53bcd47a091222a0010dd7231dd6a342dd24fb37c403a772b2ceb2e808714f5",
+      "size": 3744
+    },
+    {
+      "path": "ci/validate_github_actions.py",
+      "sha256": "5c48129ba0885ecaeb0c7413e3307cf6ac641f5f227e20d9edef83944c03662f",
+      "size": 1619
+    },
+    {
+      "path": "docs/AK_WORKFLOW_REPORT.md",
+      "sha256": "9dc8afb99385792ddb4c11bd0e4e04b06de9348247cafca11a9818539523c755",
+      "size": 1834
+    },
+    {
+      "path": "docs/AK_WORKFLOW_REPORT_v0.6.md",
+      "sha256": "3f63aec77b12a344426d743dc6634d7b8c6332861b4f185ff51118ee7235dfed",
+      "size": 1260
+    },
+    {
+      "path": "docs/AUDIT_FINDINGS.md",
+      "sha256": "617259f082252dd5c2ad8bbf35c5a9d636b7bbe903369686ebdaaa2f3c460410",
+      "size": 891
+    },
+    {
+      "path": "docs/GITHUB_ACTIONS.md",
+      "sha256": "e4ce76ff3df1d06c3ca651e81e0e37774d8d504f5d4764ce6d4d3854784f5f8e",
+      "size": 2537
+    },
+    {
+      "path": "docs/UPSTREAM_STATUS.md",
+      "sha256": "9e84cdbac419cd2671c31eaff16887bdd7d92dd96968747070503feb232d7b88",
+      "size": 396
+    },
+    {
+      "path": "docs/WEB_EVIDENCE.md",
+      "sha256": "e15a401cd4f4bc2f8555109411b4a86c8e3e5ccfa622ae43b150d6f0ad3105e7",
+      "size": 956
+    },
+    {
+      "path": "docs/WEB_EVIDENCE_v0.4.md",
+      "sha256": "90f248ab957839743087123ccd3d5c8414f03a535e575c9f7da7f69d6615607f",
+      "size": 678
+    },
+    {
+      "path": "docs/WEB_EVIDENCE_v0.6.md",
+      "sha256": "e9448e00159b549d31eb41dcca7846f097e8d641daa12f25d503391761a82a6e",
+      "size": 807
+    },
+    {
+      "path": "locks/base_image.json",
+      "sha256": "9112f9ffff022b984b2c86c0602865a38b7fac37780dcd9768064e59fb6df434",
+      "size": 280
+    },
+    {
+      "path": "locks/dependencies.repos",
+      "sha256": "55b46fa5950fc3b2baa84197b57dadbef5d6819c901ec3c536f7e7ccc9701208",
+      "size": 733
+    },
+    {
+      "path": "locks/upstream.json",
+      "sha256": "804ab387fd0118a882dc16109d148c5e4f271748666a6e97671caf37dc2fbc7c",
+      "size": 307
+    },
+    {
+      "path": "patches/README.md",
+      "sha256": "64ac6e4bbbd8cf991b5182d9653d24309d23c464a011f48cc71853017616dc91",
+      "size": 403
+    },
+    {
+      "path": "phase1_ros2/Dockerfile.jazzy",
+      "sha256": "0d5cc57b8bc2f731965a4a9f02f42a0bfad489102bcd21192e2f9c1194f56952",
+      "size": 377
+    },
+    {
+      "path": "phase1_ros2/Dockerfile.phase11",
+      "sha256": "68115db0f9ddcb7aac4bdeead9b99c65a53ff0c88eec180c3f4b8f5d9d32276a",
+      "size": 407
+    },
+    {
+      "path": "phase1_ros2/PHASE11_RETURN_INSTRUCTIONS.md",
+      "sha256": "9bdc086ccd9f98176cf99f71b15f09b2927d560757d83d954ba1cffabbc76b1e",
+      "size": 443
+    },
+    {
+      "path": "phase1_ros2/README.md",
+      "sha256": "0748e3462aa1aa81374ba4b5132696346924e683b2fefbb2b8f5dc8f595f46f1",
+      "size": 1333
+    },
+    {
+      "path": "phase1_ros2/RUN_PHASE11.cmd",
+      "sha256": "e1582f83eaf975e8d1382004366e8e0f9ff3f369cee3514b6740ef3d02503f6e",
+      "size": 136
+    },
+    {
+      "path": "phase1_ros2/RUN_PHASE11.ps1",
+      "sha256": "064e4083623448bff2bcfee5142f01d2e29113c147d40ec80b78f5a5d920d107",
+      "size": 2284
+    },
+    {
+      "path": "phase1_ros2/docs/COORDINATE_CONTRACT.md",
+      "sha256": "cd5671b27b8ce9840249a87465a36ee0b8773f0b5a2a9bb3a61d26107f3a155f",
+      "size": 731
+    },
+    {
+      "path": "phase1_ros2/docs/DIFFERENTIAL_REGRESSION.md",
+      "sha256": "c7012a2eee6e4f6d88a6d7ed63bebd700aa9099a77049e7445365ec5f6060893",
+      "size": 1123
+    },
+    {
+      "path": "phase1_ros2/docs/MIGRATION_PLAN.md",
+      "sha256": "8af5df76376b8cdf2831cd4d892f71507a71ee41434cfd3239e67b8f7fb54e5f",
+      "size": 855
+    },
+    {
+      "path": "phase1_ros2/docs/PHASE11_BUILD_CONTRACT.md",
+      "sha256": "f8df759da23a0f7dec2c2b1b43a980796b4ac6bf0f2c87c518c38d7579cb001e",
+      "size": 916
+    },
+    {
+      "path": "phase1_ros2/docs/WEB_EVIDENCE_v0.5.md",
+      "sha256": "111fef8d3fdaab2b5cb600025db0e582433ba88b823d00c6b2d6306b5d377fdc",
+      "size": 783
+    },
+    {
+      "path": "phase1_ros2/locks/jazzy_image.json",
+      "sha256": "9353825d90d0636bbd2b094d3e5637da88e8a0109fe2e85fd97878b91a29b34e",
+      "size": 531
+    },
+    {
+      "path": "phase1_ros2/locks/stack.json",
+      "sha256": "41425582975a77f31dd15c81008dd50ed4bc16cb4dd0a8cf29e434f287d8f745",
+      "size": 850
+    },
+    {
+      "path": "phase1_ros2/regression/REGRESSION_CONTRACT.md",
+      "sha256": "6e827f73355690bf4fe63d2faac76f9cb52747b51a7f27ee51bcac77279aa3d4",
+      "size": 998
+    },
+    {
+      "path": "phase1_ros2/regression/__pycache__/legacy_model_reference.cpython-313.pyc",
+      "sha256": "1b690859ec2e7063ba4c35ca7787efb890d5c2a4e81a971219f22c0dd9b88545",
+      "size": 4881
+    },
+    {
+      "path": "phase1_ros2/regression/compare_trajectory_csv.py",
+      "sha256": "52ddb8009d1e9e7d06dcde702f009fd7e1f91443ffa1d146eb8e2ae9c002d37b",
+      "size": 1488
+    },
+    {
+      "path": "phase1_ros2/regression/core_model_runner.cpp",
+      "sha256": "0754b2b15aaf8f80acc174c839eb3e7b1530dcbd0717a0aa918b6a1e3c54b794",
+      "size": 906
+    },
+    {
+      "path": "phase1_ros2/regression/export_trajectory_csv.py",
+      "sha256": "32e374855a605c52047991ec5f3bd3dbd9aa52c661ab007962acb89dace3d846",
+      "size": 1146
+    },
+    {
+      "path": "phase1_ros2/regression/geodesy_fixtures.json",
+      "sha256": "e1ce41574d70c199933ed90be26fe3e341d7aa91fcb9cbe3ad7002c58d38f4fb",
+      "size": 891
+    },
+    {
+      "path": "phase1_ros2/regression/geodesy_reference.py",
+      "sha256": "b571a0bff9566f993cdf975e0a7e4cc6cd5efa6560872af47afe666e67d1256f",
+      "size": 1253
+    },
+    {
+      "path": "phase1_ros2/regression/legacy_final_fixtures.json",
+      "sha256": "a8606cb2449ccb5a5aba83b9a286c72b35ff3d6d55485de69d1ee5461d2f106a",
+      "size": 1282
+    },
+    {
+      "path": "phase1_ros2/regression/legacy_model_reference.py",
+      "sha256": "5788aedbf16d100df4aa1c40318265cb11caf9b0b3dbdd86fa453d78843df6f7",
+      "size": 1803
+    },
+    {
+      "path": "phase1_ros2/regression/model_scenarios.json",
+      "sha256": "eac9da06dd5ad2e41ff1f2c4bcd444be21a6092208d13ae6efcc33638dde3291",
+      "size": 878
+    },
+    {
+      "path": "phase1_ros2/regression/out/MODEL_DIFFERENTIAL_REPORT.json",
+      "sha256": "07710ecc37dd57accf3af993f96b603841227db031cd1c34c883f207d71a7d3d",
+      "size": 1773
+    },
+    {
+      "path": "phase1_ros2/regression/out/TRAJECTORY_CSV_REPORT.json",
+      "sha256": "0791138d69381cad3cff93b8227d9075f9d58e9e53d72136521d6ffb7b1c5613",
+      "size": 1651
+    },
+    {
+      "path": "phase1_ros2/regression/out/colcon_skipped.txt",
+      "sha256": "fdf6cfb8fd73291c47ad10c661f13788af78e038d727ff85a9742bb05474c8e3",
+      "size": 70
+    },
+    {
+      "path": "phase1_ros2/regression/out/core_model_runner",
+      "sha256": "0ef2d105e9a2ccfb45bd766ff295088b56f85b924f44a317b7408bb488bb07b1",
+      "size": 23296
+    },
+    {
+      "path": "phase1_ros2/regression/out/geodesy_reference_report.json",
+      "sha256": "8bcd7ccef7174dd8060b267dbe68416659d5ad5fb228d42ed3ac187af95fb462",
+      "size": 1076
+    },
+    {
+      "path": "phase1_ros2/regression/out/model_regression_console.log",
+      "sha256": "07710ecc37dd57accf3af993f96b603841227db031cd1c34c883f207d71a7d3d",
+      "size": 1773
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/core/combined_state.csv",
+      "sha256": "b1eb963de7f1a60b77f6c36702bb5d6153c4d6235f628b1b1ed7246135c2936d",
+      "size": 27037
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/core/exact_pi_boundary.csv",
+      "sha256": "7cc38ee588d885c8a5dc25f7cf2e50c6c3b71f11eca4d989cb740ce32f4fad61",
+      "size": 2428
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/core/surge_step.csv",
+      "sha256": "62c2dda382dbe20cb547984030691b2c9d8887a68aa5ab9b3272cbc641c9efac",
+      "size": 12191
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/core/wrap_179_to_minus179.csv",
+      "sha256": "6e2e69cad90e7d1fceb1be13b52459e492c92185efcbc6bd4813e50f248be8c8",
+      "size": 12286
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/core/yaw_step.csv",
+      "sha256": "e96263e2216a98dc9ac6aee1751690f673ec025ecbfe612801794af67652eb93",
+      "size": 23733
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/core/zero_equilibrium.csv",
+      "sha256": "6da2459fed1676ea9fa45e423cb26b6e00ff149f433a93ea181c75524bc5005f",
+      "size": 564
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/legacy/combined_state.csv",
+      "sha256": "a3a7bd8dff79d614afc5382f5b43bb90412dc04d76043d19edad3d5897e01d23",
+      "size": 25539
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/legacy/exact_pi_boundary.csv",
+      "sha256": "d0901bad481d15c9e0736d28900a3c3df6d43b799997fa73fd01c09481f76987",
+      "size": 2326
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/legacy/surge_step.csv",
+      "sha256": "5bf3e072a735f0ee478eb27498e08fbf1408f12bd837d217905da8c354201f02",
+      "size": 12751
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/legacy/wrap_179_to_minus179.csv",
+      "sha256": "3d0a0ec02fdd3fe715ff58ce7b1d81f89c841bd8e4ba181e4a8499089808515e",
+      "size": 11727
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/legacy/yaw_step.csv",
+      "sha256": "5f4d7ba7668f8aaaab09fecd6e677509628b7f25c21a1ab67a4b7058b55ea700",
+      "size": 22693
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectories/legacy/zero_equilibrium.csv",
+      "sha256": "7471765abc9b5842e0c444e27a0c1084aaa22b2afd6c8a85c9906f37a8c98495",
+      "size": 720
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectory_compare.log",
+      "sha256": "0791138d69381cad3cff93b8227d9075f9d58e9e53d72136521d6ffb7b1c5613",
+      "size": 1651
+    },
+    {
+      "path": "phase1_ros2/regression/out/trajectory_export.log",
+      "sha256": "72bb8111b4bc2ce2a101840ca860b2ec2e892dfb11ac0baa4286a7e85339e0d3",
+      "size": 138
+    },
+    {
+      "path": "phase1_ros2/regression/run_model_regression.py",
+      "sha256": "8f43f5f9f4a82418a4099399de0e2bf128f3f23bfeac70a77cada72eb729926b",
+      "size": 2028
+    },
+    {
+      "path": "phase1_ros2/regression/trajectory_schema.json",
+      "sha256": "3328f18fdc62f23cf5d4fa5c5ef604391f0177055e4468b14f30c5ddf7889d96",
+      "size": 464
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_geodesy/CMakeLists.txt",
+      "sha256": "f12bbd7127cc523be7167cc453a8c065dd45b9e97bdc6d67ec0294a049a89b13",
+      "size": 1197
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_geodesy/include/usv_geodesy/local_enu.hpp",
+      "sha256": "5054680797422d9535abe9fdf227c2174d1b40c96f10ee7afb9334c7bf07e925",
+      "size": 516
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_geodesy/package.xml",
+      "sha256": "d7b24702b0ade5d8cf5a2645581093b4e96b928986382e41b71979ea95b5d1a2",
+      "size": 481
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_geodesy/src/local_enu.cpp",
+      "sha256": "d2cc1513c521a93dd8925099ba0e5d6a778f64088437b4ea57b28880307a673a",
+      "size": 489
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_geodesy/test/test_local_enu.cpp",
+      "sha256": "01ccd9ed421e23319c5832f4a1a765294e13a5647095005cc81f643bc2e33df3",
+      "size": 547
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_geodesy/test/test_reference_fixtures.cpp",
+      "sha256": "c73d5003d0420303ba61684aaaeffd221e89e27e72bf235db908a4c469d4ddd5",
+      "size": 1001
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_map_core/CMakeLists.txt",
+      "sha256": "7a67c6383fe89aea26d51562c81b6455624644059798514eea894083f7b84974",
+      "size": 519
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_map_core/include/usv_map_core/map_query.hpp",
+      "sha256": "b59c42121c340db79cda2efb72394efc114bcffe5a50c0aac7d46493e73f1184",
+      "size": 523
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_map_core/package.xml",
+      "sha256": "fb48b867ad500f154c95653aca08fcbbdca678c066812cee9a2c1c8d569d580c",
+      "size": 401
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_model_core/CMakeLists.txt",
+      "sha256": "5b66cc31faaf5288aa09403c51149027bbebba7c8dc20601528852f6f8e048b5",
+      "size": 1026
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_model_core/include/usv_model_core/vessel_state.hpp",
+      "sha256": "f8967661a1ddda82daa4840a62110731db4effe72f1255fd6fad19c2cef2a571",
+      "size": 431
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_model_core/include/usv_model_core/viknes830.hpp",
+      "sha256": "6b0b16e112ba96d45713928e04e951d4b8dd71ea69e8ceeee63a6763437da93a",
+      "size": 1233
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_model_core/package.xml",
+      "sha256": "a68068972f2c75bbeb514e0bd97238ef02a75ed42e39d80b95d835cf6c150b74",
+      "size": 485
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_model_core/src/viknes830.cpp",
+      "sha256": "bbf63fe0fd5cba73d33e58d371d7980569ae1854de45864dd27a2ba642e6b169",
+      "size": 4061
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_model_core/test/test_legacy_final_fixtures.cpp",
+      "sha256": "c6fe80720498290cf2e51ce25f8ec41aabf478d50139aa14d94741754054727b",
+      "size": 2002
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_model_core/test/test_viknes830.cpp",
+      "sha256": "2ca702d808b849a131bcc5959beb18b38aa5f4e4998f6afbb40a9dd8922a606f",
+      "size": 1272
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_nav2_hybrid_planner/CMakeLists.txt",
+      "sha256": "bf0289d67f033771c34556fde7ddc421f7fd24da43d8a9c8d0c249d07e29b94c",
+      "size": 1083
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_nav2_hybrid_planner/include/usv_nav2_hybrid_planner/hybrid_planner_adapter.hpp",
+      "sha256": "0a93d303f701986c45d9928cb587f7a23e246892bd0c58afcbf61b339750e9c7",
+      "size": 830
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_nav2_hybrid_planner/package.xml",
+      "sha256": "9413d43a65561601404bb8bb9d49aa17f4be126918a57c83c7ab9ec4923e7234",
+      "size": 702
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_nav2_hybrid_planner/src/hybrid_planner_adapter.cpp",
+      "sha256": "7fea7c4e19af4adf55e8b2c060a301cef76e520bca42c15a96f2d758bb3b223b",
+      "size": 1131
+    },
+    {
+      "path": "phase1_ros2/ros2_ws/src/usv_nav2_hybrid_planner/usv_hybrid_planner_plugin.xml",
+      "sha256": "d27ba446b4724a6987db81b8e0aa3ff1a4a814fc86d57f15ad81ef6949480fe6",
+      "size": 280
+    },
+    {
+      "path": "phase1_ros2/scripts/build_scaffold.sh",
+      "sha256": "a7fef8509148e613c6ecad9bbcb0824e8b8758b51de5bb2243f9687fc7728703",
+      "size": 284
+    },
+    {
+      "path": "phase1_ros2/scripts/make_phase11_report.py",
+      "sha256": "a40fe6fda42f9078ee7a871afb49baaffedffffd4ae5d4b1f77fa20ad82180cb",
+      "size": 1982
+    },
+    {
+      "path": "phase1_ros2/scripts/run_phase11_build.sh",
+      "sha256": "0424a9c683ede372015cfa37bcd08f691e908002b30bc4f983de1e2126a05102",
+      "size": 2358
+    },
+    {
+      "path": "phase1_ros2/scripts/run_phase1_regression.sh",
+      "sha256": "a389b9080aad5b6c8e20d3e300fce0e92aea5a5f1942cf1fc0f742c870b60aab",
+      "size": 1267
+    },
+    {
+      "path": "phase1_ros2/scripts/validate_phase11_return.py",
+      "sha256": "f13bd0b7ba7511be2c94b5a6d847122621a67aac8b8245420c2351ea1d421fd8",
+      "size": 580
+    },
+    {
+      "path": "phase1_ros2/scripts/verify_scaffold.py",
+      "sha256": "41e648881968baca36475668403749b8cc40988365a98e7e0100a84975686c68",
+      "size": 2706
+    },
+    {
+      "path": "scripts/__pycache__/self_test_artifact.cpython-313.pyc",
+      "sha256": "7a420255da435cb84478c8fb5324b441fe74a36c7337496c5a558b24be54f385",
+      "size": 12855
+    },
+    {
+      "path": "scripts/build_legacy.sh",
+      "sha256": "9454b3762b6758b623de4cedecf5b17458fdc17407cbce51526281811c29d6a5",
+      "size": 861
+    },
+    {
+      "path": "scripts/fetch_dependencies.py",
+      "sha256": "d98f16b9e3aa121ac302f39eeb6d7c4021c3a1a70488a91bc8ccbcad070f98ee",
+      "size": 828
+    },
+    {
+      "path": "scripts/fetch_legacy.sh",
+      "sha256": "c48127878515242d492ea1d64186b1a3b3a96ba1be18cfb45acf3934a6a5a88e",
+      "size": 914
+    },
+    {
+      "path": "scripts/gate_phase1.py",
+      "sha256": "a10e4108d0c3c0a4f8872105f79ea4fd70bb54ce2873a6884877e6ee82a4c441",
+      "size": 528
+    },
+    {
+      "path": "scripts/launch_parse.sh",
+      "sha256": "9bdb8e6d0c22e0b1780a650ae036cde6e9eb4f87b88a1a56771db1a8025cffa0",
+      "size": 1194
+    },
+    {
+      "path": "scripts/make_report.py",
+      "sha256": "5647ce3fa90860e93d204867e390e08c26d1b444e61adbd8c1bc1e76f9fbe95f",
+      "size": 3541
+    },
+    {
+      "path": "scripts/preflight_windows.ps1",
+      "sha256": "9ae48844581fb12fb71a9bfe3832af0422068e8e1b1211d637d2828e3d6ca0f8",
+      "size": 3436
+    },
+    {
+      "path": "scripts/qualify_static.py",
+      "sha256": "ed384c90f5bd09b442d64128df956e2fe656efd1b6bd971626a71cb447709b20",
+      "size": 2536
+    },
+    {
+      "path": "scripts/run_qualification.sh",
+      "sha256": "e2380474964a37671c0ea8a1d36b8ac35d5e29fad3ca19b5765753211e9cff04",
+      "size": 1221
+    },
+    {
+      "path": "scripts/run_scenarios.sh",
+      "sha256": "17d7c540b1656a12fa68dee121196581645bf4279c9169237e3080f57551c805",
+      "size": 1209
+    },
+    {
+      "path": "scripts/run_tests.sh",
+      "sha256": "194c33893ee8ea585fae18015a347d9ab8ac44a0ef46373298db8dd936a73aab",
+      "size": 736
+    },
+    {
+      "path": "scripts/self_test_artifact.py",
+      "sha256": "5bc91e3133ac49775a6d58f7f3d74564c2bfd6158ac0d8f9f212a31d230f8ef1",
+      "size": 6538
+    },
+    {
+      "path": "scripts/validate_return.py",
+      "sha256": "36404bedfceabc3684415b7137963ec41a80608e021ca8e9de5d1a86a07f1e31",
+      "size": 2108
+    },
+    {
+      "path": "scripts/write_identity.py",
+      "sha256": "15c4e3c968b566ab604d0a969022fe88eb61e5cbb4d08ce0bf4ca9af9261952b",
+      "size": 1142
+    },
+    {
+      "path": "tests/GOLDEN_SCENARIOS.md",
+      "sha256": "45ada380ab8026b3b6eac0b638e057854e001f8e198d4faefed1b7972441d02f",
+      "size": 591
+    },
+    {
+      "path": "tests/TEST_MATRIX.md",
+      "sha256": "90d040dbca05a1d443fc40868023ffbde16d6fd3c0ef214103cc57a908beab69",
+      "size": 1228
+    }
+  ]
+}

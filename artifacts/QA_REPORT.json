@@ -1,0 +1,208 @@
+{
+  "version": "0.6",
+  "release_status": "PASS_STATIC_DIFFERENTIAL_AND_GITHUB_ACTIONS_SCHEMA",
+  "scope": "navigation, vessel dynamics, geodesy, collision-avoidance infrastructure, simulation safety, reproducibility, CI qualification",
+  "workflow": "ak-research -> ak-brainstorm -> ak-plan -> ak-cook -> ak-debug/audit -> ak-test -> ak-code-review -> review",
+  "self_test": {
+    "version": "0.6",
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "json_parse",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "dependency_lock_shape",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "python_compile",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "bash_syntax",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "security_patterns",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "upstream_pin",
+        "status": "PASS",
+        "detail": "c930b938302d8cfe8c378dfa69748a33d3d76459"
+      },
+      {
+        "name": "required_v06_files",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "legacy_evidence_always_returned",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "phase11_evidence_always_returned",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "phase1_scaffold_static",
+        "status": "PASS",
+        "detail": "gacy_ros1_api\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"metric_api_contract\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"jazzy_nav2_signature\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"guarded_plugin\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"stack_lock\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"model_core_stdlib_only\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"phase11_core_only\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"xml_parse\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    }\n  ]\n}\n"
+      },
+      {
+        "name": "phase1_differential_regression",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "model_core_stdlib_compile",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "xml_parse",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "phase11_report_smoke",
+        "status": "PASS",
+        "detail": "ema\": \"usv-phase11-report/v1\",\n  \"status\": \"PASS\",\n  \"packages\": [\n    \"usv_model_core\",\n    \"usv_geodesy\",\n    \"usv_map_core\"\n  ],\n  \"checks\": {\n    \"rosdep\": \"PASS\",\n    \"colcon_build\": \"PASS\",\n    \"colcon_test\": \"PASS\",\n    \"model_differential\": \"PASS\",\n    \"geodesy_reference\": \"PASS\"\n  },\n  \"parity_claim\": \"BLOCKED_PENDING_LEGACY_Q10\",\n  \"next_action\": \"RUN_LEGACY_QUALIFICATION_AND_COMPARE\"\n}\n"
+      },
+      {
+        "name": "github_actions_validation",
+        "status": "PASS",
+        "detail": "ull_request_target:static-audit.yml\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"pinned_checkout:static-audit.yml\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"pinned_upload:static-audit.yml\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"legacy_evidence_always_uploaded\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"phase11_evidence_always_uploaded\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"explicit_vm_runner\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    },\n    {\n      \"name\": \"no_secrets_reference\",\n      \"status\": \"PASS\",\n      \"detail\": \"\"\n    }\n  ]\n}\n"
+      },
+      {
+        "name": "return_triage_early_failure",
+        "status": "PASS",
+        "detail": " {\n      \"name\": \"present:preflight.json\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"present:environment.json\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"present:docker_build.json\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"gates_parse\",\n      \"status\": \"WARN\"\n    }\n  ]\n}\n"
+      }
+    ]
+  },
+  "github_actions_validation": {
+    "schema": "usv-github-actions-validation/v1",
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "workflow_count",
+        "status": "PASS",
+        "detail": "legacy-qualification.yml,phase11-ros2.yml,static-audit.yml"
+      },
+      {
+        "name": "yaml:legacy-qualification.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "permissions_read:legacy-qualification.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "no_pull_request_target:legacy-qualification.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "pinned_checkout:legacy-qualification.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "pinned_upload:legacy-qualification.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "yaml:phase11-ros2.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "permissions_read:phase11-ros2.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "no_pull_request_target:phase11-ros2.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "pinned_checkout:phase11-ros2.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "pinned_upload:phase11-ros2.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "yaml:static-audit.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "permissions_read:static-audit.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "no_pull_request_target:static-audit.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "pinned_checkout:static-audit.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "pinned_upload:static-audit.yml",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "legacy_evidence_always_uploaded",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "phase11_evidence_always_uploaded",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "explicit_vm_runner",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "no_secrets_reference",
+        "status": "PASS",
+        "detail": ""
+      }
+    ]
+  },
+  "runtime_evidence": {
+    "github_hosted_actions": "PENDING_EXTERNAL_RUN",
+    "legacy_ros1_runtime": "PENDING_EXTERNAL_RUN",
+    "phase11_ros2_runtime": "PENDING_EXTERNAL_RUN"
+  },
+  "notes": [
+    "GitHub Actions workflows are syntactically/policy validated locally but have not been executed on a GitHub-hosted runner in this session.",
+    "Parity claim remains blocked pending legacy Q10 and actual Phase 1.1 return evidence."
+  ],
+  "generated_at_utc": "2026-09-13T04:52:18.640115+00:00"
+}

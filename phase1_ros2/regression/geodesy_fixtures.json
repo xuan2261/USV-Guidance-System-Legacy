@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "ellipsoid": "WGS84",
+  "origin": {"latitude_deg":40.504594,"longitude_deg":-73.991544,"altitude_m":0.0},
+  "fixtures": [
+    {"id":"origin","geo":[40.504594,-73.991544,0.0],"enu_m":[0.0,0.0,0.0]},
+    {"id":"near_northeast","geo":[40.505,-73.990,5.0],"enu_m":[130.8718117337646,45.08518631062355,4.998499490336918]},
+    {"id":"east_0p001deg","geo":[40.504594,-73.990544,0.0],"enu_m":[84.76198082711839,0.00048043429718899077,-0.0005624249669687516]},
+    {"id":"north_0p001deg","geo":[40.505594,-73.991544,0.0],"enu_m":[0.0,111.04435439623657,-0.0009690431894620327]},
+    {"id":"ny_goal","geo":[40.641538,-73.844579,0.0],"enu_m":[12431.660450374324,15217.378686975018,-30.296311454778905]}
+  ],
+  "tolerance_m": 0.02,
+  "round_trip_tolerance_deg": 1e-9,
+  "provenance": "Independent WGS84 ECEF->ENU computation; intended to cross-check GeographicLib LocalCartesian."
+}

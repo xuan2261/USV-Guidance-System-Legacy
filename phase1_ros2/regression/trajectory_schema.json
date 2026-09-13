@@ -1,0 +1,17 @@
+{
+  "schema": "usv-trajectory-csv/v1",
+  "columns": [
+    {"name":"t","unit":"s"},
+    {"name":"x","unit":"m"},
+    {"name":"y","unit":"m"},
+    {"name":"yaw","unit":"rad"},
+    {"name":"u","unit":"m/s"},
+    {"name":"v","unit":"m/s"},
+    {"name":"r","unit":"rad/s"}
+  ],
+  "comparison": {
+    "absolute_tolerance": 1e-9,
+    "yaw_policy": "compare both raw legacy yaw and canonical atan2(sin,cos) yaw",
+    "time_alignment": "exact fixed-step RK4 samples"
+  }
+}

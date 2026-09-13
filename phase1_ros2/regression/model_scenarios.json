@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "source_commit": "c930b938302d8cfe8c378dfa69748a33d3d76459",
+  "integration": {"method": "fixed_rk4", "dt_s": 0.1},
+  "scenarios": [
+    {"id":"zero_equilibrium","duration_s":2.0,"state":[0,0,0,0,0,0],"command":[0,0],"expect":"equivalent"},
+    {"id":"surge_step","duration_s":20.0,"state":[0,0,0,0,0,0],"command":[2.0,0],"expect":"equivalent"},
+    {"id":"yaw_step","duration_s":20.0,"state":[0,0,0,1,0,0],"command":[1.0,0.5],"expect":"equivalent"},
+    {"id":"combined_state","duration_s":20.0,"state":[0,0,0.2,1,0.1,0.02],"command":[2.0,1.0],"expect":"equivalent"},
+    {"id":"wrap_179_to_minus179","duration_s":10.0,"state":[0,0,3.12413936106985,1,0,0],"command":[1.0,-3.12413936106985],"expect":"equivalent"},
+    {"id":"exact_pi_boundary","duration_s":2.0,"state":[0,0,3.141592653589793,1,0,0],"command":[1.0,0],"expect":"legacy_policy_required"}
+  ]
+}

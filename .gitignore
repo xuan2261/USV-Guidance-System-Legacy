@@ -1,0 +1,19 @@
+# Runtime qualification output
+_qualification_work/
+qualification_return/
+QUALIFICATION_RETURN.zip
+QUALIFICATION_RETURN.zip.sha256
+
+# ROS 2 Phase 1.1 output
+phase1_ros2/phase11_out/
+phase1_ros2/PHASE11_RETURN.zip
+phase1_ros2/PHASE11_RETURN.zip.sha256
+phase1_ros2/ros2_ws/build/
+phase1_ros2/ros2_ws/install/
+phase1_ros2/ros2_ws/log/
+
+# Python / local build noise
+**/__pycache__/
+*.pyc
+*.pyo
+.DS_Store

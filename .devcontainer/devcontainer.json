@@ -1,0 +1,22 @@
+{
+  "name": "USV Guidance Legacy Qualification v0.4",
+  "build": {
+    "dockerfile": "../Dockerfile.legacy",
+    "context": ".."
+  },
+  "remoteUser": "ros",
+  "workspaceFolder": "/workspaces/usv_guidance_recovery",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspaces/usv_guidance_recovery,type=bind,consistency=cached"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "ms-iot.vscode-ros"
+      ]
+    }
+  },
+  "runArgs": []
+}

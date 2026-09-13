@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/sanderfu/USV-Guidance-System.git",
+  "branch": "main",
+  "commit": "c930b938302d8cfe8c378dfa69748a33d3d76459",
+  "commit_date_utc": "2022-06-05T09:50:06Z",
+  "purpose": "Legacy reproducibility baseline only; do not track main dynamically",
+  "harness_version": "0.2"
+}

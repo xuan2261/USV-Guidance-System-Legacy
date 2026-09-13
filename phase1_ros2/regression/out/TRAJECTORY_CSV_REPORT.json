@@ -1,0 +1,91 @@
+{
+  "schema": "usv-trajectory-comparison/v1",
+  "status": "PASS",
+  "tolerance": 1e-09,
+  "results": [
+    {
+      "id": "combined_state",
+      "status": "PASS",
+      "max_error": {
+        "t": 0.0,
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_raw": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      }
+    },
+    {
+      "id": "exact_pi_boundary",
+      "status": "PASS",
+      "max_error": {
+        "t": 0.0,
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_raw": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      }
+    },
+    {
+      "id": "surge_step",
+      "status": "PASS",
+      "max_error": {
+        "t": 0.0,
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_raw": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      }
+    },
+    {
+      "id": "wrap_179_to_minus179",
+      "status": "PASS",
+      "max_error": {
+        "t": 0.0,
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_raw": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      }
+    },
+    {
+      "id": "yaw_step",
+      "status": "PASS",
+      "max_error": {
+        "t": 0.0,
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_raw": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      }
+    },
+    {
+      "id": "zero_equilibrium",
+      "status": "PASS",
+      "max_error": {
+        "t": 0.0,
+        "x": 0.0,
+        "y": 0.0,
+        "yaw_raw": 0.0,
+        "yaw_canonical": 0.0,
+        "u": 0.0,
+        "v": 0.0,
+        "r": 0.0
+      }
+    }
+  ]
+}

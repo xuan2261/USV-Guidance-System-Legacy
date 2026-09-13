@@ -1,0 +1,6 @@
+{
+  "image": "osrf/ros:noetic-desktop-full",
+  "digest": "sha256:7dbfb9576d8e6d226c31e06129a82aaab8702695f38eca2116918cb9b9308797",
+  "platform": "linux/amd64",
+  "purpose": "Frozen ROS Noetic/Focal qualification base. Noetic is EOL; use only to reproduce the legacy baseline."
+}

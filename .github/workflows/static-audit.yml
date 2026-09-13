@@ -1,0 +1,65 @@
+name: Static audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: usv-static-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install audit dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-yaml build-essential
+
+      - name: Validate workflows
+        run: python3 ci/validate_github_actions.py
+
+      - name: Run artifact self-test
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/github-actions/static
+          python3 scripts/self_test_artifact.py . \
+            | tee artifacts/github-actions/static/SELF_TEST_REPORT.json
+
+      - name: Capture runner metadata
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p artifacts/github-actions/static
+          {
+            echo "runner_os=${RUNNER_OS}"
+            echo "runner_arch=${RUNNER_ARCH}"
+            echo "image_os=${ImageOS:-unknown}"
+            echo "image_version=${ImageVersion:-unknown}"
+            uname -a
+            python3 --version
+            g++ --version | head -1
+          } > artifacts/github-actions/static/RUNNER_ENVIRONMENT.txt
+
+      - name: Upload static evidence
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: usv-static-evidence-${{ github.run_id }}
+          path: artifacts/github-actions/static
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>usv_geodesy</name>
+  <version>0.2.0</version>
+  <description>Explicit WGS84 to local ENU metric conversion library.</description>
+  <maintainer email="noreply@example.invalid">Recovery scaffold</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>geographiclib</depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

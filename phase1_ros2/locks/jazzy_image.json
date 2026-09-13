@@ -1,0 +1,12 @@
+{
+  "schema": "usv-phase11-container-lock/v1",
+  "observed_date": "2026-09-13",
+  "image": "ros:jazzy-ros-base-noble",
+  "publisher": "Docker Official Image / OSRF maintained",
+  "architectures": ["linux/amd64", "linux/arm64/v8"],
+  "observed_digest_prefixes": {
+    "linux/amd64": "d4bc3d61176d",
+    "linux/arm64/v8": "21d41e7d6d52"
+  },
+  "policy": "The Windows wrapper records the full RepoDigest returned by Docker at execution time. Do not claim byte-for-byte image reproducibility from the short web digest prefix alone."
+}

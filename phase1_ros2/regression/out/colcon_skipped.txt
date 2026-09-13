@@ -1,0 +1,1 @@
+SKIP: ROS 2 Jazzy/colcon unavailable; pure regression still executed.

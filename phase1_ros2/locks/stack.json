@@ -1,0 +1,20 @@
+{
+  "schema": "usv-ros2-stack-lock/v1",
+  "baseline_date": "2026-09-13",
+  "os": "Ubuntu 24.04 Noble",
+  "ros2": "Jazzy Jalisco",
+  "gazebo": "Harmonic",
+  "ros_gz_pairing": "Jazzy + Harmonic binaries hosted at packages.ros.org",
+  "vrx": {
+    "tag": "v3.1.0",
+    "recommended_branch": "jazzy"
+  },
+  "nav2_api": "Jazzy nav2_core::GlobalPlanner createPlan(start, goal, cancel_checker)",
+  "notes": [
+    "Jazzy/Harmonic selected for VRX compatibility and reproducible navigation/simulation research baseline.",
+    "Phase 1.1 qualifies only model/geodesy/map-core build and tests; Nav2 Hybrid A* remains guarded.",
+    "Lyrical/Jetty is newer but is not the selected compatibility baseline for this recovery line."
+  ],
+  "phase11_image": "ros:jazzy-ros-base-noble",
+  "phase11_image_identity_policy": "capture full Docker RepoDigest at runtime"
+}

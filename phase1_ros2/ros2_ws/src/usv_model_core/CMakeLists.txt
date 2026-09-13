@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.16)
+project(usv_model_core LANGUAGES CXX)
+find_package(ament_cmake REQUIRED)
+add_library(${PROJECT_NAME} src/viknes830.cpp)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+target_include_directories(${PROJECT_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+install(TARGETS ${PROJECT_NAME} EXPORT export_${PROJECT_NAME}
+  ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+install(DIRECTORY include/ DESTINATION include)
+ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
+if(BUILD_TESTING)
+  find_package(ament_cmake_gtest REQUIRED)
+  ament_add_gtest(test_viknes830 test/test_viknes830.cpp)
+  target_link_libraries(test_viknes830 ${PROJECT_NAME})
+  ament_add_gtest(test_legacy_final_fixtures test/test_legacy_final_fixtures.cpp)
+  target_link_libraries(test_legacy_final_fixtures ${PROJECT_NAME})
+endif()
+ament_package()

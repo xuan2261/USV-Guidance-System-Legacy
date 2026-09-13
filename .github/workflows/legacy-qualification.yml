@@ -1,0 +1,133 @@
+name: Legacy ROS 1 qualification
+
+on:
+  workflow_dispatch:
+    inputs:
+      runtime_mode:
+        description: Runtime scenario depth
+        required: true
+        default: smoke
+        type: choice
+        options:
+          - none
+          - smoke
+          - all
+
+permissions:
+  contents: read
+
+concurrency:
+  group: usv-legacy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  legacy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      LEGACY_IMAGE: usv-guidance-legacy-qualification:gha
+      RUNTIME_MODE: ${{ inputs.runtime_mode }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Preflight
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p qualification_return _qualification_work/workspace
+          docker version | tee qualification_return/docker_version.log
+          docker info | tee qualification_return/docker_info.log
+          df -h | tee qualification_return/disk_before.log
+          free -h | tee qualification_return/memory.log
+
+      - name: Build pinned Noetic qualification image
+        id: docker_build
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          docker build --pull=false --platform linux/amd64 \
+            --label org.opencontainers.image.source="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}" \
+            --label org.opencontainers.image.revision="${GITHUB_SHA}" \
+            -t "${LEGACY_IMAGE}" -f Dockerfile.legacy . \
+            2>&1 | tee qualification_return/docker-build.log
+          rc=${PIPESTATUS[0]}
+          echo "docker_build_rc=${rc}" >> "$GITHUB_OUTPUT"
+          exit "$rc"
+
+      - name: Run legacy qualification
+        id: qualification
+        if: steps.docker_build.outputs.docker_build_rc == '0'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          chmod -R a+rwX qualification_return _qualification_work
+          docker run --rm --platform linux/amd64 \
+            --user 0:0 \
+            --mount "type=bind,source=${GITHUB_WORKSPACE},target=/harness,readonly" \
+            --mount "type=bind,source=${GITHUB_WORKSPACE}/_qualification_work/workspace,target=/workspace" \
+            --mount "type=bind,source=${GITHUB_WORKSPACE}/qualification_return,target=/return" \
+            -e "RUNTIME_MODE=${RUNTIME_MODE}" \
+            "${LEGACY_IMAGE}" \
+            bash /harness/scripts/run_qualification.sh /workspace /return \
+            2>&1 | tee qualification_return/github_actions_container.log
+          rc=${PIPESTATUS[0]}
+          echo "qualification_rc=${rc}" >> "$GITHUB_OUTPUT"
+          exit "$rc"
+
+      - name: Record wrapper failure if qualification was not reached
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          mkdir -p qualification_return
+          python3 - <<'PY'
+          import json, os, pathlib
+          out=pathlib.Path('qualification_return')
+          db='${{ steps.docker_build.outputs.docker_build_rc }}'
+          qr='${{ steps.qualification.outputs.qualification_rc }}'
+          if not qr:
+              (out/'github_actions_wrapper.json').write_text(json.dumps({
+                  'status':'FAIL',
+                  'category':'GITHUB_ACTIONS_OR_DOCKER',
+                  'docker_build_rc':db or 'NOT_REACHED',
+                  'qualification_rc':'NOT_REACHED'
+              },indent=2)+'\n')
+          PY
+          df -h > qualification_return/disk_after.log
+
+      - name: Package legacy evidence
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          rm -f QUALIFICATION_RETURN.zip QUALIFICATION_RETURN.zip.sha256
+          (cd qualification_return && zip -qr ../QUALIFICATION_RETURN.zip .)
+          sha256sum QUALIFICATION_RETURN.zip > QUALIFICATION_RETURN.zip.sha256
+          exit 0
+
+      - name: Upload legacy evidence
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: legacy-qualification-return-${{ github.run_id }}
+          path: |
+            QUALIFICATION_RETURN.zip
+            QUALIFICATION_RETURN.zip.sha256
+            qualification_return
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Enforce qualification result
+        if: always()
+        shell: bash
+        run: |
+          db='${{ steps.docker_build.outputs.docker_build_rc }}'
+          qr='${{ steps.qualification.outputs.qualification_rc }}'
+          if [[ "$db" != '0' ]]; then exit "${db:-91}"; fi
+          if [[ -z "$qr" ]]; then exit 92; fi
+          exit "$qr"
