@@ -12,6 +12,13 @@ on:
           - none
           - smoke
           - all
+  push:
+    branches: [ ci/runtime-qualification ]
+    paths:
+      - '.github/workflows/legacy-qualification.yml'
+      - 'Dockerfile.legacy'
+      - 'scripts/**'
+      - 'locks/**'
 
 permissions:
   contents: read
@@ -26,7 +33,7 @@ jobs:
     timeout-minutes: 90
     env:
       LEGACY_IMAGE: usv-guidance-legacy-qualification:gha
-      RUNTIME_MODE: ${{ inputs.runtime_mode }}
+      RUNTIME_MODE: ${{ inputs.runtime_mode || 'none' }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -86,7 +93,7 @@ jobs:
           set +e
           mkdir -p qualification_return
           python3 - <<'PY'
-          import json, os, pathlib
+          import json, pathlib
           out=pathlib.Path('qualification_return')
           db='${{ steps.docker_build.outputs.docker_build_rc }}'
           qr='${{ steps.qualification.outputs.qualification_rc }}'
