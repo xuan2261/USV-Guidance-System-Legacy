@@ -35,10 +35,15 @@ jobs:
       - name: Run artifact self-test
         shell: bash
         run: |
-          set -o pipefail
           mkdir -p artifacts/github-actions/static
-          python3 scripts/self_test_artifact.py . \
-            | tee artifacts/github-actions/static/SELF_TEST_REPORT.json
+          report_tmp="$(mktemp)"
+          set +e
+          python3 scripts/self_test_artifact.py . >"${report_tmp}"
+          rc=$?
+          set -e
+          cat "${report_tmp}"
+          mv "${report_tmp}" artifacts/github-actions/static/SELF_TEST_REPORT.json
+          exit "${rc}"
 
       - name: Capture runner metadata
         if: always()
