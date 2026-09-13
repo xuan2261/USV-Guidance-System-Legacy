@@ -56,12 +56,14 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
+          set +e
           docker build --pull=false --platform linux/amd64 \
             --label org.opencontainers.image.source="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}" \
             --label org.opencontainers.image.revision="${GITHUB_SHA}" \
             -t "${LEGACY_IMAGE}" -f Dockerfile.legacy . \
             2>&1 | tee qualification_return/docker-build.log
           rc=${PIPESTATUS[0]}
+          set -e
           echo "docker_build_rc=${rc}" >> "$GITHUB_OUTPUT"
           exit "$rc"
 
@@ -73,6 +75,7 @@ jobs:
         run: |
           set -o pipefail
           chmod -R a+rwX qualification_return _qualification_work
+          set +e
           docker run --rm --platform linux/amd64 \
             --user 0:0 \
             --mount "type=bind,source=${GITHUB_WORKSPACE},target=/harness,readonly" \
@@ -83,6 +86,7 @@ jobs:
             bash /harness/scripts/run_qualification.sh /workspace /return \
             2>&1 | tee qualification_return/github_actions_container.log
           rc=${PIPESTATUS[0]}
+          set -e
           echo "qualification_rc=${rc}" >> "$GITHUB_OUTPUT"
           exit "$rc"
 
@@ -91,6 +95,7 @@ jobs:
         shell: bash
         run: |
           set +e
+          sudo chown -R "$(id -u):$(id -g)" qualification_return _qualification_work 2>/dev/null || true
           mkdir -p qualification_return
           python3 - <<'PY'
           import json, pathlib
