@@ -62,6 +62,7 @@ jobs:
         run: |
           set -o pipefail
           chmod -R a+rwX phase1_ros2
+          set +e
           docker run --rm \
             --user 0:0 \
             --mount "type=bind,source=${GITHUB_WORKSPACE}/phase1_ros2,target=/work" \
@@ -69,6 +70,7 @@ jobs:
             bash /work/scripts/run_phase11_build.sh \
             2>&1 | tee phase1_ros2/phase11_out/docker_run.log
           rc=${PIPESTATUS[0]}
+          set -e
           echo "qualification_rc=${rc}" >> "$GITHUB_OUTPUT"
           exit "$rc"
 
@@ -77,6 +79,7 @@ jobs:
         shell: bash
         run: |
           set +e
+          sudo chown -R "$(id -u):$(id -g)" phase1_ros2/phase11_out 2>/dev/null || true
           cd phase1_ros2
           python3 scripts/make_phase11_report.py phase11_out
           rm -f PHASE11_RETURN.zip PHASE11_RETURN.zip.sha256
