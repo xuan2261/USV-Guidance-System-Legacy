@@ -2,6 +2,11 @@ name: Phase 1.1 ROS 2 qualification
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ ci/runtime-qualification ]
+    paths:
+      - '.github/workflows/phase11-ros2.yml'
+      - 'phase1_ros2/**'
 
 permissions:
   contents: read
