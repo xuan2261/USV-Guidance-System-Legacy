@@ -1,6 +1,9 @@
 name: Legacy ROS 1 qualification
 
 on:
+  push:
+    branches:
+      - ci/benign-smoke-q10
   workflow_dispatch:
     inputs:
       runtime_mode:
@@ -26,7 +29,8 @@ jobs:
     timeout-minutes: 90
     env:
       LEGACY_IMAGE: usv-guidance-legacy-qualification:gha
-      RUNTIME_MODE: ${{ inputs.runtime_mode }}
+      # Temporary branch push is restricted to the benign waypoint/navigation smoke.
+      RUNTIME_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.runtime_mode || 'smoke' }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
