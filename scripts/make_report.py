@@ -6,7 +6,7 @@ def load(name,default=None):
     try: return json.loads((ret/name).read_text())
     except Exception: return default if default is not None else {}
 source=load('source_identity.json'); deps=load('dependency_identity.json'); db=load('docker_build.json'); build=load('build.json'); tests=load('tests.json'); lp=load('launch_parse.json'); static=load('static_audit.json')
-scenario_files=sorted((ret/'scenarios').glob('*.json')) if (ret/'scenarios').exists() else []; scenarios=[json.loads(p.read_text()) for p in scenario_files]
+scenario_files=sorted(p for p in (ret/'scenarios').glob('*.json') if not p.name.endswith('_assets.json')) if (ret/'scenarios').exists() else []; scenarios=[json.loads(p.read_text()) for p in scenario_files]
 expected='c930b938302d8cfe8c378dfa69748a33d3d76459'; q={}
 def gate(i,n,s,e,m=True): q[i]={'name':n,'status':s,'evidence':e,'mandatory':m}
 gate('Q0','Source SHA','PASS' if source.get('head')==expected else 'FAIL',source.get('head'))
@@ -28,5 +28,5 @@ result={'overall':overall,'ros2_migration_ready':ready=='PASS','tests_status':te
 (ret/'gates.json').write_text(json.dumps(result,indent=2)+'\n')
 lines=['# Qualification Report','',f'Overall: **{overall}**','', '| Gate | Name | Status | Mandatory |','|---|---|---:|---:|']
 for k,v in q.items(): lines.append(f"| {k} | {v['name']} | {v['status']} | {'yes' if v['mandatory'] else 'no'} |")
-lines += ['', '## Interpretation', '', '- `PASS`: evidence meets the gate.', '- `DRIFT`: source no longer matches expected legacy characterization.', '- `NOT_RUN`: optional runtime evidence was not requested.', '- `BLOCKED`: remain in recovery/fix phase before semantic ROS 2 porting.', '', 'Known legacy defects are characterization targets and are not silently patched in Phase 0.5.']
+lines += ['', '## Interpretation', '', '- `PASS`: evidence meets the gate.', '- `DRIFT`: source no longer matches expected legacy characterization.', '- `NOT_RUN`: optional runtime evidence was not requested.', '- `BLOCKED_DATA_MISSING`: the pinned legacy repository does not contain the non-versioned mission-region dataset required by the launch; do not reinterpret this as a planner timeout.', '- `BLOCKED`: remain in recovery/fix phase before claiming semantic ROS 2 parity.', '', 'Known legacy defects are characterization targets and are not silently patched in the recovery baseline.']
 (ret/'QUALIFICATION_REPORT.md').write_text('\n'.join(lines)+'\n'); print(json.dumps(result,indent=2)); sys.exit(0 if overall=='PASS' else 3)
