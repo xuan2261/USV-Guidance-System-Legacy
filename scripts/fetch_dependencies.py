@@ -15,7 +15,10 @@ def out(args):
     return subprocess.check_output(args, text=True).strip()
 
 def norm_url(url: str) -> str:
-    return url.rstrip('/').removesuffix('.git')
+    # ROS Noetic / Ubuntu 20.04 ships Python 3.8, so avoid str.removesuffix
+    # (introduced in Python 3.9).
+    normalized = url.rstrip('/')
+    return normalized[:-4] if normalized.endswith('.git') else normalized
 
 for name, spec in data.items():
     url, sha = spec['url'], spec['version']
